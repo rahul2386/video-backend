@@ -5,4 +5,12 @@ dotenv.config({
     path: './env'
 })
 
-connectDB();
+connectDB()
+.then(() => {
+    app.listen(process.env.PORT || 5000, () => {
+        console.log(`server is ruuning at ${process.env.PORT}`);
+    })
+})
+.catch((err) => {
+    console.log("MangoDB connection failed !!! ", err);
+})
